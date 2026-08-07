@@ -24,7 +24,7 @@ cd EnviroLens_Data_Engineering
 Because the raw sensor dataset is ~62 MB, it is too large to be hosted directly in this code repository.
 * Go to the [Kaggle Environmental Sensor Telemetry Dataset](https://www.kaggle.com/datasets/garystafford/environmental-sensor-data-132k/data)
 * Download the archive and extract the CSV file.
-* **Very Important**: Rename the extracted file to exactly **sensor_data.csv**.
+* **Very Important**: Rename the extracted file from **iot_telemetry_data** to exactly **sensor_data**.
 * Place sensor_data.csv directly inside your cloned EnviroLens_Data_Engineering folder.
 
 **3. Start the Docker Engine:**
