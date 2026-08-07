@@ -17,7 +17,7 @@ This system is completely automated. You do not need to install Python or MongoD
 **1. Clone the repository:**
 ```
 git clone https://github.com/KushTrip/EnviroLens_Data_Engineering.git
-cd EnviroLens_Data_Pipeline
+cd EnviroLens_Data_Engineering
 ```
 **2. Build and execute the system:**
 ```
