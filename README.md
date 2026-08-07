@@ -27,14 +27,17 @@ Because the raw sensor dataset is ~62 MB, it is too large to be hosted directly 
 * **Very Important**: Rename the extracted file to exactly **sensor_data.csv**.
 * Place sensor_data.csv directly inside your cloned EnviroLens_Data_Engineering folder.
 
-**3. Build and execute the system:**
+**3. Start the Docker Engine:**
+Before running any commands, you must open the Docker Desktop application on your computer. Wait until the interface confirms the "Engine is running" (usually indicated by a green status icon). If the Docker app is closed, the following terminal commands will fail.
+
+**4. Build and execute the system:**
 ```
 docker compose up --build
 ```
-**4. Expected Output:**
+**5. Expected Output:**
 Docker will automatically pull the MongoDB image, build the Python environment, and execute ingest.py. You will see the container logs in your terminal confirming the successful database connection, the clearing of old data, and the insertion of 405,184 telemetry records. The Python container will gracefully exit with Code 0 upon completion.
 
-**5. Shut down the environment:**
+**6. Shut down the environment:**
 ```
 docker compose down
 ```
