@@ -1,0 +1,17 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: envirolens_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  ingestion_app:
+    build: .
+    container_name: envirolens_ingest
+    depends_on:
+      - mongodb
+
+volumes:
+  mongo_data:
