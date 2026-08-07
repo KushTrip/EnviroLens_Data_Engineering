@@ -9,6 +9,7 @@ The architecture prioritizes idempotency, portability, and scalability. It utili
 *   **Database:** MongoDB (NoSQL) - Chosen for its flexible document schema, allowing the seamless future integration of undefined sensor types without breaking the data model.
 *   **Application Layer:** Python 3.9 (Pandas, PyMongo) - Ensures data is cleaned, transformed into JSON-compatible dictionaries, and idempotently loaded (wiping old batch states to prevent data duplication).
 *   **Infrastructure:** Docker & Docker Compose - The entire system is fully containerized, ensuring hardware-independent deployment.
+*   **Data Source:**  I used the “Environmental Sensor Telemetry Data” dataset from Kaggle. This dataset contains approximately 405,000 records of metrics from IoT devices, including temperature, humidity, carbon monoxide (CO), and light, which perfectly meets the project’s requirements.
 
 ## How to Run the Pipeline
 
@@ -19,14 +20,21 @@ This system is completely automated. You do not need to install Python or MongoD
 git clone https://github.com/KushTrip/EnviroLens_Data_Engineering.git
 cd EnviroLens_Data_Engineering
 ```
-**2. Build and execute the system:**
+**2. Download the Dataset:**
+Because the raw sensor dataset is ~62 MB, it is too large to be hosted directly in this code repository.
+* Go to the [Kaggle Environmental Sensor Telemetry Dataset](https://www.kaggle.com/datasets/garystafford/environmental-sensor-data-132k/data)
+* Download the archive and extract the CSV file.
+* **Very Important**: Rename the extracted file to exactly **sensor_data.csv**.
+* Place sensor_data.csv directly inside your cloned EnviroLens_Data_Engineering folder.
+
+**3. Build and execute the system:**
 ```
 docker compose up --build
 ```
-**3. Expected Output:**
+**4. Expected Output:**
 Docker will automatically pull the MongoDB image, build the Python environment, and execute ingest.py. You will see the container logs in your terminal confirming the successful database connection, the clearing of old data, and the insertion of 405,184 telemetry records. The Python container will gracefully exit with Code 0 upon completion.
 
-**4. Shut down the environment:**
+**5. Shut down the environment:**
 ```
 docker compose down
 ```
