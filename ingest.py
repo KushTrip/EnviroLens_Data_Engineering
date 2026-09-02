@@ -19,17 +19,32 @@ def run_batch_job():
         print("2. Reading CSV file (this might take a few seconds for 405k rows)...")
         df = pd.read_csv('sensor_data.csv')
 
-        # Step C: Transform the DataFrame to match the MongoDB schema
-        print("3. Transforming data to match MongoDB document format...")
-        data_dict = df.to_dict("records")
+        # Step C: Data Quality check to ensure the DataFrame is not empty
+        print("Scanning for missing values and half-broken rows...")
+        initial_row_count = len(df)
 
-        # Step D: Load the transformed data into MongoDB
+        # Drop any row with missing value 
+        df_cleaned = df.dropna()
+        cleaned_row_count = len(df_cleaned)
+
+        # calculate and log the broken rows
+        broken_rows = initial_row_count - cleaned_row_count
+        if broken_rows > 0:
+            print(f"  -> WARNING: {broken_rows} rows were dropped due to missing values.")
+        else:
+            print("  -> SUCCESS: Data is 100% clean with no missing values.")
+
+        # Step D: Transform the DataFrame to match the MongoDB schema
+        print("3. Transforming data to match MongoDB document format...")
+        data_dict = df_cleaned.to_dict("records")
+
+        # Step E: Load the transformed data into MongoDB
         print("4. Inserting massive Batch of data into MongoDB...")
         collection.insert_many(data_dict)
 
-        # Step E: Verify the insertion by counting the documents in the collection
+        # Step F: Verify the insertion by counting the documents in the collection
         total_records = collection.count_documents({})
-        print(f"SUCCESS: {total_records} records inserted into EnviroLens DB!")
+        print(f"SUCCESS: {total_records} clean records inserted into EnviroLens DB!")
 
     except FileNotFoundError:
         print("ERROR: The file 'sensor_data.csv' was not found. Please ensure the file exists in the correct directory.")
