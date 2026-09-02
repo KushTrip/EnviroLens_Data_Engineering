@@ -34,10 +34,22 @@ Before running any commands, you must open the Docker Desktop application on you
 ```
 docker compose up --build
 ```
-**5. Expected Output:**
-Docker will automatically pull the MongoDB image, build the Python environment, and execute ingest.py. You will see the container logs in your terminal confirming the successful database connection, the clearing of old data, and the insertion of 405,184 telemetry records. The Python container will gracefully exit with Code 0 upon completion.
 
-**6. Shut down the environment:**
+**5. Expected Output:**
+Docker will automatically pull the MongoDB image, build the Python environment, and execute ingest.py. You will see the container logs in your terminal confirming the successful database connection, 
+the clearing of old data, 
+scanning for missing values, 
+dropping corrupted rows, 
+and the insertion of clean data. 
+The Python container will gracefully exit with Code 0 upon completion.
+
+**6. Execute Business Logic Queries (User Stories)**
+To prove the system's analytical capabilities, run the query engine to extract the City Planner and Citizen user stories.
+```
+docker compose run --rm ingestion_app python query.py
+```
+
+**7. Shut down the environment:**
 ```
 docker compose down
 ```
