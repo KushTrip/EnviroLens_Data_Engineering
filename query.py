@@ -17,7 +17,7 @@ print(f"Device: {highest_temp_doc['device']}")
 print(f"Timestamp: {highest_temp_doc['ts']}")
 
 # ---User story 2: Citizen ---
-print("\nExecuting User Story 2: Citizen (Latest Air Quality at Transit Hub")
+print("\nExecuting User Story 2: Citizen (Latest Air Quality at Transit Hub)")
 # We filter for the specific variable sensor (device 1c:bf:ce:15:ec:4d)
 # Then we sort by timestamp ('ts') in descending order to get the newest reading
 query_filter = {"device": "1c:bf:ce:15:ec:4d"}
