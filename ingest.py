@@ -19,6 +19,11 @@ def run_batch_job():
         print("2. Reading CSV file (this might take a few seconds for 405k rows)...")
         df = pd.read_csv('sensor_data.csv')
 
+        # Step B2: Check if the file is completely empty
+        if df.empty:
+            print("FAILURE: The file 'sensor_data.csv' exists but contains zero data rows. Aborting batch job.")
+            return  # This stops the script safely
+
         # Step C: Data Quality check to ensure the DataFrame is not empty
         print("Scanning for missing values and half-broken rows...")
         initial_row_count = len(df)
