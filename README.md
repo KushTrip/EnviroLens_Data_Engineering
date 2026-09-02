@@ -20,15 +20,14 @@ This system is completely automated. You do not need to install Python or MongoD
 git clone https://github.com/KushTrip/EnviroLens_Data_Engineering.git
 cd EnviroLens_Data_Engineering
 ```
-**2. Download the Dataset:**
+**2. Download the Dataset:**\
 Because the raw sensor dataset is ~62 MB, it is too large to be hosted directly in this code repository.
 * Go to the [Kaggle Environmental Sensor Telemetry Dataset](https://www.kaggle.com/datasets/garystafford/environmental-sensor-data-132k/data)
 * Download the archive and extract the CSV file.
 * **Very Important**: Rename the extracted file from **iot_telemetry_data** to exactly **sensor_data**.
 * Place sensor_data.csv directly inside your cloned EnviroLens_Data_Engineering folder.
 
-**3. Start the Docker Engine:**
-
+**3. Start the Docker Engine:**\
 Before running any commands, you must open the Docker Desktop application on your computer. Wait until the interface confirms the "Engine is running" (usually indicated by a green status icon). If the Docker app is closed, the following terminal commands will fail.
 
 **4. Build and execute the system:**
@@ -36,7 +35,7 @@ Before running any commands, you must open the Docker Desktop application on you
 docker compose up --build
 ```
 
-**5. Expected Output:**
+**5. Expected Output:**\
 Docker will automatically pull the MongoDB image, build the Python environment, and execute ingest.py. You will see:
 * the container logs in your terminal confirming the successful database connection,
 * the clearing of old data,
@@ -45,7 +44,7 @@ Docker will automatically pull the MongoDB image, build the Python environment, 
 * and the insertion of clean data. 
 The Python container will gracefully exit with Code 0 upon completion.
 
-**6. Execute Business Logic Queries (User Stories)**
+**6. Execute Business Logic Queries (User Stories):**\
 To prove the system's analytical capabilities, run the query engine to extract the City Planner and Citizen user stories.
 ```
 docker compose run --rm ingestion_app python query.py
