@@ -7,7 +7,7 @@ The architecture prioritizes idempotency, portability, and scalability. It utili
 
 ## Architecture & Technology Stack
 *   **Database:** MongoDB (NoSQL) - Chosen for its flexible document schema, allowing the seamless future integration of undefined sensor types without breaking the data model.
-*   **Application Layer:** Python 3.9 (Pandas, PyMongo) - Ensures data is cleaned, transformed into JSON-compatible dictionaries, and idempotently loaded (wiping old batch states to prevent data duplication).
+*   **Application Layer:** Python 3.11 (Pandas, PyMongo) - Ensures data is cleaned, transformed into JSON-compatible dictionaries, and idempotently loaded (wiping old batch states to prevent data duplication).
 *   **Infrastructure:** Docker & Docker Compose - The entire system is fully containerized, ensuring hardware-independent deployment.
 *   **Data Source:**  I used the “Environmental Sensor Telemetry Data” dataset from Kaggle. This dataset contains approximately 405,000 records of metrics from IoT devices, including temperature, humidity, carbon monoxide (CO), and light, which perfectly meets the project’s requirements.
 
